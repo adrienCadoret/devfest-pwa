@@ -1,0 +1,18 @@
+<div *ngIf="schedules">
+  <div *ngFor="let day of schedules">
+    <mat-card style="    background-color: #524f4f;">
+      <h1 style="text-align: center; color: white;">{{day.date}}</h1>
+    </mat-card>
+    <div *ngFor="let timeslot of day.timeslots">
+      <mat-card style="    background-color: darkgrey;">
+        <h2 style="text-align: center; color: white;">{{timeslot.startTime}} : {{timeslot.endTime}}</h2>
+      </mat-card>
+      <div *ngIf="sessions">
+        <div *ngFor="let sessionId of timeslot.sessions">
+          <app-session-card [session]="getSession(sessionId)"></app-session-card>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

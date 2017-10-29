@@ -1,0 +1,29 @@
+<div *ngIf="session">
+  <mat-card>
+    <!--<mat-card-header *ngIf="session.image">-->
+      <!--<img src="{{session.image}}">-->
+    <img *ngIf="session.image" mat-card-image src="{{session.image}}">
+    <!--</mat-card-header>-->
+    <!--<mat-card-content>-->
+      <h1>{{session.title}}</h1>
+      <h2>{{session.type}}</h2>
+      <h4 *ngIf="session.category">{{session.category}}</h4>
+      <h4 *ngIf="session.complexity">{{session.complexity}}</h4>
+
+      <mat-chip-list *ngIf="session.tags">
+        <mat-chip *ngFor="let tag of session.tags" color="primary">{{tag}}</mat-chip>
+      </mat-chip-list>
+
+      <div [innerHTML]="session.description"></div>
+
+      <h1 *ngIf="speakers && speakers.length > 0">Speakers</h1>
+      <mat-card *ngFor="let speaker of speakers" (click)="goToDetailSpeaker(speaker.id)">
+        {{speaker.name}}
+      </mat-card>
+    <!--</mat-card-content>-->
+  </mat-card>
+  <button mat-fab color="primary" (click)="openNotes()">Add note</button>
+</div>
+<mat-card *ngIf="!session">
+  session not found
+</mat-card>

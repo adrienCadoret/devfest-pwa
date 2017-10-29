@@ -1,0 +1,31 @@
+<div>
+
+
+  <form (ngSubmit)="addCurrentNote()">
+    <mat-form-field>
+      <textarea matInput placeholder="Note" [(ngModel)]="currentNote" [formControl]="noteFormControl"></textarea>
+      <mat-error *ngIf="noteFormControl.hasError('required')">
+        Note is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary">Add the note</button>
+  </form>
+
+  <div *ngIf="allNotes && allNotes[sessionId]">
+    <mat-card *ngFor="let note of allNotes[sessionId]">
+      <!--<h1>Your notes</h1>-->
+      <!--<div >-->
+      <mat-card-content>
+        <p>{{note}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-icon-button>
+          <mat-icon (click)="deleteNote(note)">delete</mat-icon>
+        </button>
+      </mat-card-actions>
+      <!--</div>-->
+    </mat-card>
+  </div>
+
+
+</div>

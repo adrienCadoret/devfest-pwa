@@ -1,0 +1,28 @@
+<mat-card *ngIf="speaker">
+  <!--<mat-card-header>-->
+    <!--<img src="{{speaker.photoUrl}}">-->
+  <img *ngIf="speaker.photoUrl" mat-card-image src="{{speaker.photoUrl}}">
+
+  <!--</mat-card-header>-->
+  <!--<mat-card-content>-->
+    <h1>{{speaker.id}} : {{speaker.name}}, {{speaker.country}}</h1>
+    <h2>{{speaker.company}}</h2>
+    <mat-chip-list *ngIf="speaker.tags">
+      <mat-chip *ngFor="let tag of speaker.tags" color="primary">{{tag}}</mat-chip>
+    </mat-chip-list>
+    <hr>
+    <div>{{speaker.bio}}</div>
+
+    <hr>
+
+    <h1>Sessions</h1>
+    <mat-card *ngFor="let session of sessions" (click)="goToDetailSession(session.id)">
+      {{session.title}}
+    </mat-card>
+
+  <!--</mat-card-content>-->
+</mat-card>
+
+<mat-card *ngIf="!speaker">
+  Speaker not found
+</mat-card>
